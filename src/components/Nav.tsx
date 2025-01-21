@@ -1,8 +1,19 @@
-const Nav = () => {
-  // TODO: Add necessary code to display the navigation bar and link between the pages
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const Nav: React.FC = () => {
   return (
-    <div>Nav</div>
-  )
+    <nav className="nav">
+      <ul>
+        <li>
+          <Link to="/">Candidate Search</Link>
+        </li>
+        <li>
+          <Link to="/saved">Saved Candidates</Link>
+        </li>
+      </ul>
+    </nav>
+  );
 };
 
 export default Nav;
