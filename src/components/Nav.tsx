@@ -9,7 +9,7 @@ const Nav: React.FC = () => {
           <Link to="/">Candidate Search</Link>
         </li>
         <li>
-          <Link to="/saved">Saved Candidates</Link>
+          <Link to="/SavedCandidates">Saved Candidates</Link>
         </li>
       </ul>
     </nav>

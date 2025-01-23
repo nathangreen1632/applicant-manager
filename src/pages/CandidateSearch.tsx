@@ -23,9 +23,10 @@ const CandidateSearch: React.FC = () => {
     setError(null);
     try {
       const response = await searchGithub();
-      if (response.items && response.items.length > 0) {
-        setUsers(response.items.map((user: any) => user.login));
-        await fetchCandidateDetails(response.items[0].login);
+      console.log('Response:', response);
+      if (response.length > 0) {
+        setUsers(response.map((user: any) => user.login));
+        await fetchCandidateDetails(response[0].login);
       } else {
         setError('No candidates found');
       }
@@ -41,15 +42,15 @@ const CandidateSearch: React.FC = () => {
     try {
       const userData = await searchGithubUser(username);
       setCandidate({
-        name: userData.name ?? 'No name provided',
+        name: userData.name,
         login: userData.login,
-        location: userData.location ?? 'Unknown',
+        location: userData.location,
         avatar_url: userData.avatar_url,
-        email: userData.email ?? 'Not available',
-        company: userData.company ?? 'Not specified',
-        html_url: userData.html_url ?? 'Not available',
+        email: userData.email,
+        company: userData.company,
+        html_url: userData.html_url,
         username: userData.login,
-        blog: userData.blog ?? 'Not available',
+        blog: userData.blog,
         twitter_username: userData.twitter_username ?? null,
         hireable: userData.hireable ?? null,
         bio: userData.bio ?? null,
@@ -87,16 +88,20 @@ const CandidateSearch: React.FC = () => {
         <div className="candidate-card">
           <img src={candidate.avatar_url} alt={candidate.name} className="candidate-avatar" />
           <h2>{candidate.name}</h2>
-          <p>Username: {candidate.login}</p>
-          <p>Location: {candidate.location}</p>
-          <p>Email: {candidate.email}</p>
-          <p>Company: {candidate.company}</p>
+          <p>Username: {candidate.login ?? 'No Username Provided'}</p>
+          <p>Bio: {candidate.bio ?? 'No Bio available'}</p>
+          <p>Blog: {candidate.blog || 'No Blog available'}</p>
+          <p>Email: {candidate.email || 'No Email available'}</p>
+          <p>Location: {candidate.location || 'No Location specified'}</p>
+          <p>Company: {candidate.company || 'No Company specified'}</p>
+          <p>Twitter Username: {candidate.twitter_username ?? 'Not Specified'}</p>
+          <p>Hireable: {candidate.hireable || 'Not open to work'}</p>
           <a href={candidate.html_url} target="_blank" rel="noopener noreferrer">
             View GitHub Profile
           </a>
           <div className="button-group">
-            <button onClick={saveCandidate} className="btn-save">+</button>
-            <button onClick={getNextCandidate} className="btn-skip">-</button>
+            <button onClick={saveCandidate} className="btn-save">✅</button>
+            <button onClick={getNextCandidate} className="btn-skip">❌</button>
           </div>
         </div>
       ) : (
