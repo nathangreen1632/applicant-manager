@@ -81,7 +81,7 @@ const CandidateSearch: React.FC = () => {
   };
 
   return (
-    <div className="candidate-container">
+    <main className="candidate-container">
       {loading && <p>Loading candidate...</p>}
       {error && <p className="error">{error}</p>}
       {!loading && candidate ? (
@@ -107,7 +107,7 @@ const CandidateSearch: React.FC = () => {
       ) : (
         !loading && <p>No more candidates available</p>
       )}
-    </div>
+    </main>
   );
 };
 
