@@ -360,7 +360,7 @@ If you have any questions or feedback, feel free to reach out via the following 
 </div>
 
 ## <span id="you-tube-link" style="color:lightseagreen;"> Link to Video Walkthrough </span>
-[Project Walkthrough](https://www.youtube.com/watch?v=6z5qPHpE0Mo&t)
+[Project Walkthrough](https://youtu.be/f3qgfn8OSM8)
 
 <a id="you-tube-link"></a>
 
