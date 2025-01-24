@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { searchGithub, searchGithubUser } from '../api/API'; // Import the correct functions
+import { searchGithub, searchGithubUser } from '../api/API';
 import { Candidate } from '../interfaces/Candidate.interface';
 
 const CandidateSearch: React.FC = () => {

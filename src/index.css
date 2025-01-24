@@ -13,7 +13,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* General Styles */
 body {
   background: linear-gradient(to bottom, #000a53, #000000);
   color: white;
@@ -22,7 +21,6 @@ body {
   padding: 0;
 }
 
-/* Navigation Bar */
 .nav {
   display: flex;
   justify-content: center;
@@ -46,7 +44,6 @@ body {
   text-decoration: red underline;
 }
 
-/* Candidate Search Page */
 .candidate-container {
   margin: -5rem auto 0;
   display: flex;
@@ -105,7 +102,6 @@ body {
   text-decoration: underline;
 }
 
-/* Action Buttons */
 .button-group {
   display: flex;
   justify-content: space-around;
@@ -131,7 +127,6 @@ body {
   background-color: black;
 }
 
-/* Potential Candidates Page */
 .saved-candidates-header {
   margin: -2rem auto 0;
   display: flex;
@@ -143,11 +138,11 @@ body {
 
 .saved-candidates-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three cards per row */
-  gap: 20px; /* Spacing between cards */
-  justify-content: center; /* Center the grid horizontally */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
   padding: 20px;
-  max-width: 1200px; /* Limit the width to control layout */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -157,7 +152,7 @@ body {
   overflow: hidden;
   text-align: center;
   width: 100%;
-  max-width: 320px; /* Keep the card width consistent */
+  max-width: 320px;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
