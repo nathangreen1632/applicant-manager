@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Candidate } from '../interfaces/Candidate.interface';
 
-const SavedCandidates: React.FC = () => {
-  // State to hold saved candidates
+const SavedCandidates= () => {
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
 
-  // Load saved candidates from local storage when the component mounts
   useEffect(() => {
     const storedCandidates = localStorage.getItem('savedCandidates');
     if (storedCandidates) {
@@ -13,10 +11,9 @@ const SavedCandidates: React.FC = () => {
     }
   }, []);
 
-  const removeCandidate = () => {
+  const removeCandidate = (username : string) => {
     if (savedCandidates.length > 0) {
-      const updatedCandidates = [...savedCandidates];
-      updatedCandidates.pop();
+      const updatedCandidates = [...savedCandidates].filter((candidate) => candidate.username !== username);
       setSavedCandidates(updatedCandidates);
       localStorage.setItem('savedCandidates', JSON.stringify(updatedCandidates));
     }
@@ -27,9 +24,9 @@ const SavedCandidates: React.FC = () => {
       <h1>Potential Candidates</h1>
       {savedCandidates.length > 0 ? (
         <div className="saved-candidates-container">
-          {savedCandidates.map((candidate, index: number) => (
-            <div key={index} className="saved-candidates">
-              <img src={candidate.avatar_url} alt={candidate.name} className="candidate-avatar" />
+          {savedCandidates.map((candidate) => (
+            <div key={candidate.username} className="saved-candidates">
+              <img src={candidate.avatar_url} alt={candidate.name} className="candidate-avatar"/>
               <div>
                 <h2>{candidate.name}</h2>
                 <p>Username: {candidate.login ?? 'No Username Provided'}</p>
@@ -44,12 +41,10 @@ const SavedCandidates: React.FC = () => {
                   View GitHub Profile
                 </a>
               </div>
+              <button onClick={() => removeCandidate(candidate.username)} className="btn-remove">❌</button>
             </div>
           ))}
-          <div className="saved-button-group">
-            <button onClick={removeCandidate} className="btn-remove">❌</button>
-            <button onClick={removeCandidate} className="btn-remove">❌</button>
-          </div>
+
         </div>
       ) : (
         <p>No candidates have been accepted.</p>

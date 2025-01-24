@@ -208,6 +208,14 @@ body {
 }
 
 .btn-remove {
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 30px;
+  color: black;
+  cursor: pointer;
+  margin: 0 20px;
   background-color: black;
 }
 
