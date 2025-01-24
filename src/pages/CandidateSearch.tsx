@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import { Candidate } from '../interfaces/Candidate.interface';
 
-const CandidateSearch: React.FC = () => {
+const CandidateSearch= () => {
   const [candidate, setCandidate] = useState<Candidate | null>(null);
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -10,8 +10,8 @@ const CandidateSearch: React.FC = () => {
   const [users, setUsers] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  useEffect(() => {
-    const savedData = localStorage.getItem('savedCandidates');
+  useEffect(() : void => {
+    const savedData : string | null = localStorage.getItem('savedCandidates');
     if (savedData) {
       setSavedCandidates(JSON.parse(savedData));
     }
@@ -22,10 +22,10 @@ const CandidateSearch: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await searchGithub();
+      const response : any = await searchGithub();
       console.log('Response:', response);
       if (response.length > 0) {
-        setUsers(response.map((user: any) => user.login));
+        setUsers(response.map((user: any) : any => user.login));
         await fetchCandidateDetails(response[0].login);
       } else {
         setError('No candidates found');
@@ -36,11 +36,11 @@ const CandidateSearch: React.FC = () => {
     setLoading(false);
   };
 
-  const fetchCandidateDetails : (username : string) => Promise<void> = async (username: string) => {
+  const fetchCandidateDetails : (username : string) => Promise<void> = async (username: string) : Promise<void> => {
     setLoading(true);
     setError(null);
     try {
-      const userData = await searchGithubUser(username);
+      const userData : any = await searchGithubUser(username);
       setCandidate({
         name: userData.name,
         login: userData.login,
@@ -64,7 +64,7 @@ const CandidateSearch: React.FC = () => {
 
   const saveCandidate = () => {
     if (candidate) {
-      const updatedSavedCandidates = [...savedCandidates, candidate];
+      const updatedSavedCandidates : Candidate[] = [...savedCandidates, candidate];
       setSavedCandidates(updatedSavedCandidates);
       localStorage.setItem('savedCandidates', JSON.stringify(updatedSavedCandidates));
       getNextCandidate();

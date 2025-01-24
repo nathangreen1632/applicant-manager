@@ -4,16 +4,16 @@ import { Candidate } from '../interfaces/Candidate.interface';
 const SavedCandidates= () => {
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
 
-  useEffect(() => {
-    const storedCandidates = localStorage.getItem('savedCandidates');
+  useEffect(() : void => {
+    const storedCandidates : string | null = localStorage.getItem('savedCandidates');
     if (storedCandidates) {
       setSavedCandidates(JSON.parse(storedCandidates));
     }
   }, []);
 
-  const removeCandidate = (username : string) => {
+  const removeCandidate :(username : string) => void = (username : string) : void => {
     if (savedCandidates.length > 0) {
-      const updatedCandidates = [...savedCandidates].filter((candidate) => candidate.username !== username);
+      const updatedCandidates : Candidate[] = [...savedCandidates].filter((candidate : Candidate) : boolean => candidate.username !== username);
       setSavedCandidates(updatedCandidates);
       localStorage.setItem('savedCandidates', JSON.stringify(updatedCandidates));
     }
@@ -24,7 +24,7 @@ const SavedCandidates= () => {
       <h1>Potential Candidates</h1>
       {savedCandidates.length > 0 ? (
         <div className="saved-candidates-container">
-          {savedCandidates.map((candidate) => (
+          {savedCandidates.map((candidate : Candidate) => (
             <div key={candidate.username} className="saved-candidates">
               <img src={candidate.avatar_url} alt={candidate.name} className="candidate-avatar"/>
               <div>
